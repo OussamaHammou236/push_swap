@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:13:36 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/12 21:15:15 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:39:51 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void ft_check(char **av)
                     ft_error("error");
             if((av[j][i] == '-' || av[j][i] == '+') && (av[j][i + 1] == '-' || av[j][i+1] == '+' || av[j][i + 1] == ' ' || av[j][i + 1] == '\0'))
                 ft_error("error1");
-            if((av[j][i-1] >= '0' && av[j][i-1] <= '9') && (av[j][i] == '-' || av[j][i] == '+') && (av[j][i+1] >= '0' && av[j][i+1] <= '9'))
+            if((av[j][i] >= '0' && av[j][i] <= '9') && (av[j][i+1] == '-' || av[j][i+1] == '+'))
                 ft_error("error2");
            i++;
         }
@@ -68,13 +68,13 @@ void print_stac(t_list *node)
     // tmp = ft_lstlast(node);
     // while(tmp)
     //  {
-    //      printf("%d\n",tmp->content);
+    //     printf("%d\n",tmp->content);
     //     tmp = tmp->prev;
-    //  }  
-   while(node)
-     {
-        printf("%d\n",node->content);
-        node = node->next;
+    //  }
+    while(node)
+      {
+         printf("%d\n",node->content);
+         node = node->next;
      }  
 }
 t_list * list(char **av)

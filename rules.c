@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:03:22 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/13 15:49:40 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:37:21 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void sb(t_list **stac_b)
     (*stac_b)->next->prev = NULL;
     (*stac_b)->next = tmp;
     (*stac_b) = (*stac_b)->prev;
+    (*stac_b)->next->next->prev = (*stac_b)->next;
 }
 
 void pa(t_list **stac_a,t_list **stac_b)
@@ -47,14 +48,16 @@ void pa(t_list **stac_a,t_list **stac_b)
         return ;
     if(ft_lstsize(*stac_b) == 1)
     {
+        
         ft_lstadd_front(stac_a,new_node);
+        (*stac_a)->next->prev = new_node;
         *stac_b = NULL;
         return ;
     }
     (*stac_b)->next->prev = NULL;
     (*stac_b) = (*stac_b)->next;
     ft_lstadd_front(stac_a,new_node);
-    if((*stac_a)->next->next)
+    if((*stac_a)->next)
          (*stac_a)->next->prev = (*stac_a);
 }
 void free_stac(t_list **stac)
@@ -80,13 +83,15 @@ void pb(t_list **stac_a,t_list **stac_b)
     if(ft_lstsize(*stac_a) == 1)
     {
         ft_lstadd_front(stac_b,new_node);
+        (*stac_a)->next->prev = new_node;
         *stac_a = NULL;
         return ;
     }
+    (*stac_a)->next->prev = NULL;
     (*stac_a) = (*stac_a)->next;
-    free((*stac_a)->prev);
-    (*stac_a)->prev = NULL;
     ft_lstadd_front(stac_b,new_node);
+    if((*stac_b)->next)
+         (*stac_b)->next->prev = (*stac_b);
 }
 
 void ra(t_list **stac_a)
@@ -117,23 +122,26 @@ void rra(t_list **stac_a)
     t_list *new_node;
     void *tmp;
 
-    new_node = ft_lstnew(ft_lstlast(*stac_a)->content);
     if(ft_lstsize(*stac_a) <= 1) 
         return ;
-    ft_lstadd_front(stac_a,new_node);
-    tmp = ft_lstlast(*stac_a);
+    new_node = ft_lstnew(ft_lstlast(*stac_a)->content);
     ft_lstlast(*stac_a)->prev->next = NULL;
-    free(tmp);
+    ft_lstadd_front(stac_a,new_node);
+    (*stac_a)->next->prev = *stac_a;
+    //tmp = ft_lstlast(*stac_a);
+    //free(tmp);
 }
+
 void rrb(t_list **stac_b)
 {
-     t_list *new_node;
+    t_list *new_node;
     void *tmp;
 
-    new_node = ft_lstnew(ft_lstlast(*stac_b)->content);
     if(ft_lstsize(*stac_b) <= 1) 
         return ;
+    new_node = ft_lstnew(ft_lstlast(*stac_b)->content);
     ft_lstadd_front(stac_b,new_node);
+    (*stac_b)->next->prev = *stac_b;
     tmp = ft_lstlast(*stac_b);
     ft_lstlast(*stac_b)->prev->next = NULL;
     free(tmp);
