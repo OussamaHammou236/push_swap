@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/21 12:02:19 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:20:31 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,30 @@ void sort_b(t_list **stac_b,t_list **stac_a,char **av)
    t_list *walo;
    walo = *stac_a;
    int i;
-
+   int j;
    while (walo)
    {
         if(whach_sghir(stac_a,walo->content) == 1)
         {
             i = chehal(stac_a,walo->content);
-            while(i > 0)
+            j = ft_lstsize(*stac_a) - i;
+            if(i >= ft_lstsize(*stac_a))
             {
+                while(i > 0)
+                {
                 rra(stac_a);
-               printf("rra\n");
+                printf("rra\n");
                 i--;
+                }
+            }
+            else
+            {
+                while( j > 0)
+                {
+                    ra(stac_a);
+                    printf("ra\n");
+                    j--;
+                }
             }
             pb(stac_a,stac_b);
             printf("pb\n");
@@ -102,5 +115,10 @@ int main(int ac,char **av)
     ft_check(av);
     stac_a = list(av);
     sort_b(&stac_b,&stac_a,av);
+    // printf("------------stac_b----------\n"); 
+    //  print_stac(stac_b);
+    // printf("------------stac_a----------\n");
+    print_stac(stac_a);
+
     return 0;
 }
