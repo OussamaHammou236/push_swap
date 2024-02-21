@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:51:15 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/12 18:20:58 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:16:39 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void ra(t_list **stac_a);
 void rra(t_list **stac_a);
 void sb(t_list **stac_b);
 void sa(t_list **stac_a);
+void rrb(t_list **stac_b);
 
 #endif
