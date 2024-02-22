@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/21 13:20:31 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:20:52 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,27 @@ int chehal(t_list **stac_a,int nb)
     *stac_a = tmp;
     return i; 
 }
+int pos_of_nb(t_list **stac_a,int nb)
+{
+    int i;
+    void *tmp;
+    tmp = *stac_a;
+    i = 0;
+    while(*stac_a)
+    {
+        if((*stac_a)->content == nb)
+            break;
+        i++;
+        *stac_a = (*stac_a)->next;
+    }
+    // while (*stac_a)
+    // {
+    //     i++;
+    //     *stac_a = (*stac_a)->next;
+    // }
+    *stac_a = tmp;
+    return i; 
+}
 int whach_sghir(t_list **stac_a,int nb)
 {
     void *tmp;
@@ -73,32 +94,42 @@ void sort_b(t_list **stac_b,t_list **stac_a,char **av)
    walo = *stac_a;
    int i;
    int j;
+   int x;
    while (walo)
    {
         if(whach_sghir(stac_a,walo->content) == 1)
         {
             i = chehal(stac_a,walo->content);
-            j = ft_lstsize(*stac_a) - i;
-            if(i >= ft_lstsize(*stac_a))
+            x =  pos_of_nb(stac_a,walo->content);
+            j = ft_lstsize(*stac_a) - chehal(stac_a,walo->content);
+            if(x == 0)
+            {
+                 pb(stac_a,stac_b);
+                 printf("pb\n");
+            }
+            else if(x > ft_lstsize(*stac_a) / 2)
             {
                 while(i > 0)
                 {
-                rra(stac_a);
-                printf("rra\n");
-                i--;
+                    rra(stac_a);
+                    printf("rra\n");
+                    i--;
                 }
+                pb(stac_a,stac_b);
+                printf("pb\n");
             }
+            
             else
             {
-                while( j > 0)
+                while(x > 0)
                 {
                     ra(stac_a);
                     printf("ra\n");
-                    j--;
+                    x--;
                 }
+                pb(stac_a,stac_b);
+                printf("pb\n");
             }
-            pb(stac_a,stac_b);
-            printf("pb\n");
             walo = *stac_a;
         }
         else
@@ -116,9 +147,9 @@ int main(int ac,char **av)
     stac_a = list(av);
     sort_b(&stac_b,&stac_a,av);
     // printf("------------stac_b----------\n"); 
-    //  print_stac(stac_b);
+    // print_stac(stac_b);
     // printf("------------stac_a----------\n");
-    print_stac(stac_a);
+    //print_stac(stac_a);
 
     return 0;
 }
