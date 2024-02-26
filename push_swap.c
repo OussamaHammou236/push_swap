@@ -6,28 +6,12 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/22 17:20:52 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:19:55 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-int check_sort_b(t_list **stac_b,void *tmp)
-{
-    // void *tmp;
-    // tmp = (*stac_b);
-    while ((*stac_b)->next)
-    {
-        if((*stac_b)->content > (*stac_b)->next->content)
-        {
-            (*stac_b) = tmp;
-            return 0;
-        }
-        (*stac_b)=(*stac_b)->next;
-    }
-    (*stac_b) = tmp;
-    return 1;
-    
-}
+
 int chehal(t_list **stac_a,int nb)
 {
     int i;
@@ -61,14 +45,10 @@ int pos_of_nb(t_list **stac_a,int nb)
         i++;
         *stac_a = (*stac_a)->next;
     }
-    // while (*stac_a)
-    // {
-    //     i++;
-    //     *stac_a = (*stac_a)->next;
-    // }
     *stac_a = tmp;
     return i; 
 }
+
 int whach_sghir(t_list **stac_a,int nb)
 {
     void *tmp;
@@ -88,67 +68,232 @@ int whach_sghir(t_list **stac_a,int nb)
         return 1;
     return 0;
 }
-void sort_b(t_list **stac_b,t_list **stac_a,char **av)
+void copy_stac_to_arry(t_list *copy,t_data *data)
+{
+   data->lst_size = ft_lstsize(copy);
+   data->size = data->lst_size;
+   data->sort = malloc(data->lst_size * sizeof(int));
+   int i;
+   i = data->lst_size;
+   i--;
+   while(i >= 0)
+   {
+        data->sort[i] = copy->content;
+        copy = copy->next;
+        i--;
+   }
+
+}
+void sort_b(t_list **stac_b,t_list **stac_a,t_data *data)
 {
    t_list *walo;
    walo = *stac_a;
-   int i;
-   int j;
-   int x;
+
    while (walo)
    {
         if(whach_sghir(stac_a,walo->content) == 1)
         {
-            i = chehal(stac_a,walo->content);
-            x =  pos_of_nb(stac_a,walo->content);
-            j = ft_lstsize(*stac_a) - chehal(stac_a,walo->content);
-            if(x == 0)
-            {
+            data->i = chehal(stac_a,walo->content);
+            data->x =  pos_of_nb(stac_a,walo->content);
+            if(data->x == 0)
                  pb(stac_a,stac_b);
-                 printf("pb\n");
-            }
-            else if(x > ft_lstsize(*stac_a) / 2)
+            else if(data->x > ft_lstsize(*stac_a) / 2)
             {
-                while(i > 0)
+                while(data->i > 0)
                 {
                     rra(stac_a);
-                    printf("rra\n");
-                    i--;
+                    data->i--;
                 }
                 pb(stac_a,stac_b);
-                printf("pb\n");
-            }
-            
+            } 
             else
             {
-                while(x > 0)
+                while(data->x > 0)
                 {
                     ra(stac_a);
-                    printf("ra\n");
-                    x--;
+                    data->x--;
                 }
                 pb(stac_a,stac_b);
-                printf("pb\n");
             }
             walo = *stac_a;
         }
         else
             walo = walo->next;
    }
+   copy_stac_to_arry(*stac_b,data);
    free_stac(&walo);
+}
+int wach_kayn(t_data *data,t_list **stac_a)
+{
+    int start;
+    start = data->start;
+
+    while(start < data->end)
+    {
+        if(check_repeat_nb(*stac_a,data->sort[start]) == 1)
+            return 1;
+        start++;
+    }
+    return 0;
+}
+int j(t_data *data,t_list **stac_a)
+{
+    int start;
+    start = data->start; 
+    while(start < data->end)
+    {
+        if((*stac_a)->content == data->sort[start])
+            return 1;
+        start++;
+    }
+    return 0;
+}
+void ra_or_rra(t_data *data,t_list **stac_b)
+{
+    int i;
+    int j;
+
+    i = pos_of_nb(stac_b,data->sort[data->end]);
+    j = chehal(stac_b,data->sort[data->end]);
+    if(i <= ft_lstsize(*stac_b) / 2)
+    {
+        while(i > 0)
+        {
+            ra(stac_b);
+            printf("rb\n");
+            i--;
+        }
+    }
+    else
+    {
+        while(j > 0)
+        {
+            rra(stac_b);
+            printf("rrb\n");
+            j--;
+        }
+    }
+}
+void algo(t_data *data,t_list **stac_a, t_list **stac_b)
+{
+    data->offset = 2;
+    data->mid = (data->size / 2) - 1;
+    data->start = data->mid - data->offset;
+    data->end  = data->mid + data->offset;
+    t_list *d;
+    d = *stac_a;
+    while(*stac_a)
+    {
+        if(j(data,stac_a) == 1)
+        {
+            pb(stac_a,stac_b);
+            printf("pb\n");
+        }
+        else
+        {
+            if(wach_kayn(data,stac_a) == 1)
+            {
+                if(pos_of_nb(stac_a,(*stac_a)->content) >= ft_lstsize(*stac_a) / 2)
+                {
+                    rra(stac_a);
+                    printf("rra\n");
+                }
+                else
+                {
+                    ra(stac_a);
+                    printf("ra\n");  
+                }
+            }
+            else
+             {
+                 if(data->start - data->offset >= 0)
+                   data->start -= data->offset;
+                 else
+                      data->start -= 1;
+                 if(data->end + data->offset < data->lst_size)
+                     data->end += data->offset;
+                 else
+                     data->end += 1;
+                if(data->start < 0)
+                    data->start = 0;
+                if(data->end > data->lst_size)
+                       data->end = data->lst_size;
+            }
+        }
+    }
+    
+}
+void stac_a_to_b(t_data *data,t_list **stac_a, t_list **stac_b)
+{
+    int i;
+    i = 0;
+    data->end--;
+    while(*stac_b)
+    {
+        if((*stac_b)->content == data->sort[data->end])
+        {
+           pa(stac_a,stac_b);
+           printf("pa\n");
+           data->end--;
+        }
+        else
+        {
+            if(i == 0)
+            {
+               pa(stac_a,stac_b);
+               printf("pa\n");
+               ra(stac_a);
+               printf("ra\n");
+               i = 1;
+            }
+            else if(check_repeat_nb(*stac_b,data->sort[data->end]) == 0 && i == 1)
+            { 
+                rra(stac_a);
+                data->end--;
+                printf("rra\n");
+                i = 0;
+            }
+            else if((*stac_b)->content < ft_lstlast(*stac_a)->content && i == 1)
+            {
+               pa(stac_a,stac_b);
+               printf("pa\n");
+               ra(stac_a);
+               printf("ra\n");
+            }
+            else
+            {
+                //ra(stac_b);
+               // printf("rb\n");
+               ra_or_rra(data,stac_b);
+            }
+        }
+    }
+    if(i == 1)
+    {
+        rra(stac_a);
+        printf("rra\n");
+    }
 }
 int main(int ac,char **av)
 {
     t_list *stac_a;
+    t_list *test;
     t_list *stac_b;
-    void *a;
+    t_list *test1;
+    t_data data;
     stac_b = NULL;
+    test = NULL ;
     ft_check(av);
     stac_a = list(av);
-    sort_b(&stac_b,&stac_a,av);
-    // printf("------------stac_b----------\n"); 
-    // print_stac(stac_b);
-    // printf("------------stac_a----------\n");
+    test1 =  list(av);
+    sort_b(&test,&test1,&data);
+    algo(&data,&stac_a,&stac_b);
+    stac_a_to_b(&data,&stac_a,&stac_b);
+    free_stac(&test);
+    free_stac(&test1);
+    //printf("------------stac_b----------\n"); 
+    //print_stac(stac_b);
+    //printf("------------stac_a----------\n");
     //print_stac(stac_a);
 
     return 0;

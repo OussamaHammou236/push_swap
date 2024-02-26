@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:13:36 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/20 19:08:57 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/25 11:16:45 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,17 @@ void ft_check(char **av)
     }
 }
 
-void check_repeat_nb(t_list *node,int nb)
+int check_repeat_nb(t_list *node,int nb)
 {
     t_list *tmp;
     tmp = ft_lstlast(node);
     while(tmp)
      {
           if(tmp->content == nb)
-              ft_error("double number");
+                return 1;
         tmp = tmp->prev;
-     }  
+     }
+     return 0;  
 }
 void print_stac(t_list *node)
 {
@@ -92,7 +93,8 @@ t_list * list(char **av)
         i = 0;
         while(sp[i])
         {
-            check_repeat_nb(node,ft_atoi(sp[i]));
+            if(check_repeat_nb(node,ft_atoi(sp[i])) == 1)
+                ft_error("double number");
             new = ft_lstnew(ft_atoi(sp[i]));
             ft_lstadd_back(&node,new);
             free(sp[i]);

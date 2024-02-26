@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:51:15 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/20 15:16:39 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:27:01 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ typedef struct s_list
 	struct s_list	*next;
     struct s_list   *prev;
 }					t_list;
+
+typedef struct s_data
+{
+	int lst_size;
+	int x;
+	int i;
+	int j;
+	int *sort;
+	int offset;
+	int size;
+	int start;
+	int end;
+	int mid;
+}	t_data;
+
 
 t_list				*ft_lstnew(int content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
@@ -45,5 +60,9 @@ void rra(t_list **stac_a);
 void sb(t_list **stac_b);
 void sa(t_list **stac_a);
 void rrb(t_list **stac_b);
+int check_repeat_nb(t_list *node,int nb);
+void sort_a(t_list **stac_b,t_list **stac_a,t_data *data);
+int pos_of_nb(t_list **stac_a,int nb);
+int chehal(t_list **stac_a,int nb);
 
 #endif
