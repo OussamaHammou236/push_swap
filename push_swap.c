@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/26 20:19:55 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:03:57 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,29 +154,20 @@ void ra_or_rra(t_data *data,t_list **stac_b)
     int j;
 
     i = pos_of_nb(stac_b,data->sort[data->end]);
-    j = chehal(stac_b,data->sort[data->end]);
     if(i <= ft_lstsize(*stac_b) / 2)
     {
-        while(i > 0)
-        {
             ra(stac_b);
             printf("rb\n");
-            i--;
-        }
     }
     else
     {
-        while(j > 0)
-        {
-            rra(stac_b);
-            printf("rrb\n");
-            j--;
-        }
+        rra(stac_b);
+        printf("rrb\n");
     }
 }
 void algo(t_data *data,t_list **stac_a, t_list **stac_b)
 {
-    data->offset = 2;
+    data->offset =  data->ac / 11;
     data->mid = (data->size / 2) - 1;
     data->start = data->mid - data->offset;
     data->end  = data->mid + data->offset;
@@ -193,39 +184,41 @@ void algo(t_data *data,t_list **stac_a, t_list **stac_b)
         {
             if(wach_kayn(data,stac_a) == 1)
             {
-                if(pos_of_nb(stac_a,(*stac_a)->content) >= ft_lstsize(*stac_a) / 2)
-                {
-                    rra(stac_a);
-                    printf("rra\n");
+                 if(pos_of_nb(stac_a,(*stac_a)->content) >= ft_lstsize(*stac_a) / 2)
+                 {
+                     rra(stac_a);
+                     printf("rra\n");
                 }
                 else
                 {
-                    ra(stac_a);
-                    printf("ra\n");  
+                     ra(stac_a);
+                     printf("ra\n");
                 }
             }
             else
-             {
-                 if(data->start - data->offset >= 0)
+            {
+                if(data->start - data->offset >= 0)
                    data->start -= data->offset;
-                 else
-                      data->start -= 1;
-                 if(data->end + data->offset < data->lst_size)
-                     data->end += data->offset;
-                 else
-                     data->end += 1;
+                else
+                    data->start--;
+                if(data->end + data->offset < data->lst_size)
+                    data->end += data->offset;
+                else
+                    data->end++;
                 if(data->start < 0)
                     data->start = 0;
                 if(data->end > data->lst_size)
-                       data->end = data->lst_size;
+                    data->end = data->lst_size;
             }
         }
+        
     }
     
 }
 void stac_a_to_b(t_data *data,t_list **stac_a, t_list **stac_b)
 {
     int i;
+    int nb;
     i = 0;
     data->end--;
     while(*stac_b)
@@ -240,6 +233,7 @@ void stac_a_to_b(t_data *data,t_list **stac_a, t_list **stac_b)
         {
             if(i == 0)
             {
+               nb = (*stac_a)->content;
                pa(stac_a,stac_b);
                printf("pa\n");
                ra(stac_a);
@@ -248,12 +242,13 @@ void stac_a_to_b(t_data *data,t_list **stac_a, t_list **stac_b)
             }
             else if(check_repeat_nb(*stac_b,data->sort[data->end]) == 0 && i == 1)
             { 
+                if (ft_lstlast(*stac_a)->content == nb)
+                    i = 0;
                 rra(stac_a);
                 data->end--;
                 printf("rra\n");
-                i = 0;
             }
-            else if((*stac_b)->content < ft_lstlast(*stac_a)->content && i == 1)
+            else if((*stac_b)->content > ft_lstlast(*stac_a)->content && i == 1)
             {
                pa(stac_a,stac_b);
                printf("pa\n");
@@ -261,13 +256,16 @@ void stac_a_to_b(t_data *data,t_list **stac_a, t_list **stac_b)
                printf("ra\n");
             }
             else
-            {
-                //ra(stac_b);
-               // printf("rb\n");
                ra_or_rra(data,stac_b);
-            }
         }
     }
+    // i = 0;
+    // while (i <= 23)
+    // {
+    //     rra(stac_a);
+    //     printf("rra\n");
+    //     i++;
+    // }
     if(i == 1)
     {
         rra(stac_a);
@@ -286,6 +284,7 @@ int main(int ac,char **av)
     ft_check(av);
     stac_a = list(av);
     test1 =  list(av);
+    data.ac = ac;
     sort_b(&test,&test1,&data);
     algo(&data,&stac_a,&stac_b);
     stac_a_to_b(&data,&stac_a,&stac_b);
@@ -293,8 +292,8 @@ int main(int ac,char **av)
     free_stac(&test1);
     //printf("------------stac_b----------\n"); 
     //print_stac(stac_b);
-    //printf("------------stac_a----------\n");
-    //print_stac(stac_a);
+    // printf("------------stac_a----------\n");
+    // print_stac(stac_a);
 
     return 0;
 }

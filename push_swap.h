@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:51:15 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/25 15:27:01 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:33:21 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_data
 	int start;
 	int end;
 	int mid;
+	int ac;
 }	t_data;
 
 
