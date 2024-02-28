@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:03:22 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/21 11:34:03 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:44:02 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void pa(t_list **stac_a,t_list **stac_b)
     t_list *new_node;
 
     new_node = ft_lstnew((*stac_b)->content);
-    if(!stac_b)
+    if(!*stac_b)
         return ;
     if(ft_lstsize(*stac_b) == 1)
     {
@@ -79,7 +79,7 @@ void pb(t_list **stac_a,t_list **stac_b)
     t_list *new_node;
     
     new_node = ft_lstnew((*stac_a)->content);
-    if(!stac_a)
+    if(!*stac_a)
         return ;
     if(ft_lstsize(*stac_a) == 1)
     {

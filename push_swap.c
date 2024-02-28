@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/27 18:03:57 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:59:00 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,10 @@ void ra_or_rra(t_data *data,t_list **stac_b)
 }
 void algo(t_data *data,t_list **stac_a, t_list **stac_b)
 {
-    data->offset =  data->ac / 11;
+    if(data->ac <= 101)
+        data->offset =  data->ac / 11;
+    else
+        data->offset =  data->ac / 16;
     data->mid = (data->size / 2) - 1;
     data->start = data->mid - data->offset;
     data->end  = data->mid + data->offset;
@@ -213,7 +216,6 @@ void algo(t_data *data,t_list **stac_a, t_list **stac_b)
         }
         
     }
-    
 }
 void stac_a_to_b(t_data *data,t_list **stac_a, t_list **stac_b)
 {
@@ -259,18 +261,11 @@ void stac_a_to_b(t_data *data,t_list **stac_a, t_list **stac_b)
                ra_or_rra(data,stac_b);
         }
     }
-    // i = 0;
-    // while (i <= 23)
-    // {
-    //     rra(stac_a);
-    //     printf("rra\n");
-    //     i++;
-    // }
-    if(i == 1)
+    while((*stac_a)->content != data->sort[0])
     {
         rra(stac_a);
         printf("rra\n");
-    }
+    } 
 }
 int main(int ac,char **av)
 {
@@ -292,8 +287,8 @@ int main(int ac,char **av)
     free_stac(&test1);
     //printf("------------stac_b----------\n"); 
     //print_stac(stac_b);
-    // printf("------------stac_a----------\n");
-    // print_stac(stac_a);
+    //printf("------------stac_a----------\n");
+    //print_stac(stac_a);
 
     return 0;
 }
