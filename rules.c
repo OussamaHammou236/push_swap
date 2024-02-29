@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:03:22 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/27 18:44:02 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:51:44 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void sa(t_list **stac_a)
     (*stac_a)->next->prev = NULL;
     (*stac_a)->next = tmp;
     (*stac_a) = (*stac_a)->prev;
-    (*stac_a)->next->next->prev = (*stac_a)->next;
+    if((*stac_a)->next->next)
+        (*stac_a)->next->next->prev = (*stac_a)->next;
 }
 
 void sb(t_list **stac_b)

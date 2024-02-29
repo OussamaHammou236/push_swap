@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/28 15:59:00 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:22:15 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,22 @@ int pos_of_nb(t_list **stac_a,int nb)
     *stac_a = tmp;
     return i; 
 }
-
+int pos(t_list **stac_a,t_data *data)
+{
+    int i;
+    void *tmp;
+    tmp = *stac_a;
+    i = 0;
+    while(*stac_a)
+    {
+        if((*stac_a)->content > data->sort[data->start] || (*stac_a)->content <= data->sort[data->start])
+            break;
+        i++;
+        *stac_a = (*stac_a)->next;
+    }
+    *stac_a = tmp;
+    return i; 
+}
 int whach_sghir(t_list **stac_a,int nb)
 {
     void *tmp;
@@ -60,6 +75,25 @@ int whach_sghir(t_list **stac_a,int nb)
     while((*stac_a))
     {
         if(nb <= (*stac_a)->content)
+            i++;
+        (*stac_a) = (*stac_a)->next;
+    }
+    *stac_a = tmp;
+    if(ft_lstsize(*stac_a) == i)
+        return 1;
+    return 0;
+}
+int wach_kbir(t_list **stac_a,int nb)
+{
+    void *tmp;
+    int i;
+    tmp = *stac_a;
+    i   =   0;
+    
+    
+    while((*stac_a))
+    {
+        if(nb >= (*stac_a)->content)
             i++;
         (*stac_a) = (*stac_a)->next;
     }
@@ -148,124 +182,116 @@ int j(t_data *data,t_list **stac_a)
     }
     return 0;
 }
-void ra_or_rra(t_data *data,t_list **stac_b)
+void ra_or_rra(t_data *data,t_list **stac_a,t_list **stac_b,int c)
 {
     int i;
-    int j;
 
-    i = pos_of_nb(stac_b,data->sort[data->end]);
-    if(i <= ft_lstsize(*stac_b) / 2)
+    if(c == 0)
     {
-            ra(stac_b);
-            printf("rb\n");
+        i = pos(stac_a,data);
+        if(i <= ft_lstsize(*stac_a) / 2)
+        {
+            ra(stac_a);
+            printf("ra\n");
+        }
+        else
+        {
+        rra(stac_a);
+        printf("rra\n");
+        }
     }
     else
     {
-        rra(stac_b);
-        printf("rrb\n");
+        i = pos_of_nb(stac_b, data->nb);
+        if(i <= ft_lstsize(*stac_b) / 2)
+        {
+            while(i > 0)
+            {
+                ra(stac_b);
+                printf("rb\n");
+                i--;
+            }
+            pa(stac_a,stac_b);
+        }
+        else
+        {
+            data->x = ft_lstsize(*stac_b) - i;
+            while(data->x >= 0)
+            {
+                rra(stac_b);
+                printf("rrb\n");
+                data->x--;
+            }
+            //printf("%d  %d\n",(*stac_b)->content,data->nb);
+            pa(stac_a,stac_b);
+        } 
     }
+}
+void range(t_list **stac_a, t_data *data)
+{
+    int size;
+    
+    size = ft_lstsize(*stac_a);
+    if(size  >= 6 && size  <= 16)
+        data->range  =  3;
+    else if(size  <= 100)
+        data->range  = 13;
+    else if(size  <= 500)
+        data->range  = 30;
+    else
+        data->range  = 45;
 }
 void algo(t_data *data,t_list **stac_a, t_list **stac_b)
 {
-    if(data->ac <= 101)
-        data->offset =  data->ac / 11;
-    else
-        data->offset =  data->ac / 16;
-    data->mid = (data->size / 2) - 1;
-    data->start = data->mid - data->offset;
-    data->end  = data->mid + data->offset;
-    t_list *d;
-    d = *stac_a;
+    range(stac_a,data);
+    data->size_of_arr = ft_lstsize(*stac_a);
+    data->start = 0;
+    data->end = data->range;
     while(*stac_a)
     {
-        if(j(data,stac_a) == 1)
+        if(data->end >= data->size_of_arr)
+            data->end = data->size_of_arr;
+        if((*stac_a)->content > data->sort[data->start] &&  (*stac_a)->content <= data->sort[data->end])
         {
+            printf("2\n");
             pb(stac_a,stac_b);
             printf("pb\n");
+            if(ft_lstsize(*stac_b) >= 2 && (*stac_b)->content < (*stac_b)->next->content)
+            {
+                sa(stac_b);
+                printf("sb\n");
+            }
+            data->end++;
+            data->start++;
+            
+        }
+        else if((*stac_a)->content <= data->sort[data->start])
+        {
+            pb(stac_a,stac_b);
+            ra(stac_b);
+            data->end++;
+            data->start++;
+            printf("pb\nrb\n");
         }
         else
-        {
-            if(wach_kayn(data,stac_a) == 1)
-            {
-                 if(pos_of_nb(stac_a,(*stac_a)->content) >= ft_lstsize(*stac_a) / 2)
-                 {
-                     rra(stac_a);
-                     printf("rra\n");
-                }
-                else
-                {
-                     ra(stac_a);
-                     printf("ra\n");
-                }
-            }
-            else
-            {
-                if(data->start - data->offset >= 0)
-                   data->start -= data->offset;
-                else
-                    data->start--;
-                if(data->end + data->offset < data->lst_size)
-                    data->end += data->offset;
-                else
-                    data->end++;
-                if(data->start < 0)
-                    data->start = 0;
-                if(data->end > data->lst_size)
-                    data->end = data->lst_size;
-            }
-        }
-        
+           ra_or_rra(data,stac_a,stac_b,0);
     }
 }
-void stac_a_to_b(t_data *data,t_list **stac_a, t_list **stac_b)
+void stac_b_to_a(t_data *data,t_list **stac_a, t_list **stac_b)
 {
-    int i;
-    int nb;
-    i = 0;
-    data->end--;
     while(*stac_b)
     {
-        if((*stac_b)->content == data->sort[data->end])
+        if(wach_kbir(stac_b,(*stac_b)->content) == 1)
         {
-           pa(stac_a,stac_b);
-           printf("pa\n");
-           data->end--;
+            pa(stac_a,stac_b);
+            printf("pa\n");
         }
         else
         {
-            if(i == 0)
-            {
-               nb = (*stac_a)->content;
-               pa(stac_a,stac_b);
-               printf("pa\n");
-               ra(stac_a);
-               printf("ra\n");
-               i = 1;
-            }
-            else if(check_repeat_nb(*stac_b,data->sort[data->end]) == 0 && i == 1)
-            { 
-                if (ft_lstlast(*stac_a)->content == nb)
-                    i = 0;
-                rra(stac_a);
-                data->end--;
-                printf("rra\n");
-            }
-            else if((*stac_b)->content > ft_lstlast(*stac_a)->content && i == 1)
-            {
-               pa(stac_a,stac_b);
-               printf("pa\n");
-               ra(stac_a);
-               printf("ra\n");
-            }
-            else
-               ra_or_rra(data,stac_b);
+            data->nb = (*stac_b)->content;
+            ra_or_rra(data,stac_a,stac_b,1);
         }
     }
-    while((*stac_a)->content != data->sort[0])
-    {
-        rra(stac_a);
-        printf("rra\n");
-    } 
 }
 int main(int ac,char **av)
 {
@@ -282,13 +308,14 @@ int main(int ac,char **av)
     data.ac = ac;
     sort_b(&test,&test1,&data);
     algo(&data,&stac_a,&stac_b);
-    stac_a_to_b(&data,&stac_a,&stac_b);
+    sort_a(&stac_a,&stac_b,&data);
+    //stac_b_to_a(&data,&stac_a,&stac_b);
     free_stac(&test);
     free_stac(&test1);
-    //printf("------------stac_b----------\n"); 
-    //print_stac(stac_b);
-    //printf("------------stac_a----------\n");
-    //print_stac(stac_a);
+    // printf("------------stac_b----------\n"); 
+    // print_stac(stac_b);
+    // printf("------------stac_a----------\n");
+    // print_stac(stac_a);
 
     return 0;
 }
