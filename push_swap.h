@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:51:15 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/29 19:20:23 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/01 20:28:25 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ void rrb(t_list **stac_b);
 int check_repeat_nb(t_list *node,int nb);
 void sort_a(t_list **stac_b,t_list **stac_a,t_data *data);
 int pos_of_nb(t_list **stac_a,int nb);
-int chehal(t_list **stac_a,int nb);
 int wach_kbir(t_list **stac_a,int nb);
 void sort_a(t_list **stac_b,t_list **stac_a,t_data *data);
+void sort_arr(t_list **stac_a,t_data *data);
+void copy_stac_to_arry(t_list **copy,t_data *data);
+int chehal(t_list **stac_a,int nb);
 
 #endif
