@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:51:15 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/01 20:28:25 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:08:32 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
 typedef struct s_list
 {
@@ -72,5 +73,6 @@ void sort_a(t_list **stac_b,t_list **stac_a,t_data *data);
 void sort_arr(t_list **stac_a,t_data *data);
 void copy_stac_to_arry(t_list **copy,t_data *data);
 int chehal(t_list **stac_a,int nb);
+void rb(t_list **stac_b);
 
 #endif

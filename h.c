@@ -44,6 +44,7 @@ int chehal(t_list **stac_a,int nb)
     *stac_a = tmp;
     return i; 
 }
+
 int pos_of_nb(t_list **stac_a,int nb)
 {
     int i;
@@ -60,44 +61,38 @@ int pos_of_nb(t_list **stac_a,int nb)
     *stac_a = tmp;
     return i; 
 }
+
 void sort_a(t_list **stac_b,t_list **stac_a,t_data *data)
 {
    t_list *walo;
-   walo = *stac_a;
+   walo = *stac_b;
    while (walo)
    {
-        if(wach_kbir(stac_a,walo->content) == 1)
+        if(wach_kbir(stac_b,walo->content) == 1)
         {
-            data->i = chehal(stac_a,walo->content);
-            data->x =  pos_of_nb(stac_a,walo->content);
+            data->i = chehal(stac_b,walo->content);
+            data->x =  pos_of_nb(stac_b,walo->content);
             if(data->x == 0)
-            {
-                pb(stac_a,stac_b);
-                printf("pa\n");
-            }
-            else if(data->x > ft_lstsize(*stac_a) / 2)
+                pa(stac_a,stac_b);
+            else if(data->x > ft_lstsize(*stac_b) / 2)
             {
                 while(data->i > 0)
                 {
-                    rra(stac_a);
-                    printf("rrb\n");
+                    rrb(stac_b);
                     data->i--;
                 }
-                pb(stac_a,stac_b);
-                printf("pa\n");
+                pa(stac_a,stac_b);
             } 
             else
             {
                 while(data->x > 0)
                 {
-                    ra(stac_a);
-                    printf("rb\n");
+                    rb(stac_b);
                     data->x--;
                 }
-                pb(stac_a,stac_b);
-                printf("pa\n");
+                pa(stac_a,stac_b);
             }
-            walo = *stac_a;
+            walo = *stac_b;
         }
         else
             walo = walo->next;
