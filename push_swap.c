@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/02 11:31:02 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/02 18:41:42 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int pos(t_list **stac_a,t_data *data)
     i = 0;
     while(*stac_a)
     {
-        if((*stac_a)->content > data->sort[data->start] ||
-            (*stac_a)->content <= data->sort[data->start])
+        if(((*stac_a)->content > data->sort[data->start] && (*stac_a)->content <= data->sort[data->end]) || (*stac_a)->content <= data->sort[data->start])
             break;
         i++;
         *stac_a = (*stac_a)->next;
@@ -66,11 +65,10 @@ void copy_stac_to_arry(t_list **copy,t_data *data)
    *copy = tmp;
 }
 
-void ra_or_rra(t_data *data,t_list **stac_a,t_list **stac_b)
+void ra_or_rra(t_data *data,t_list **stac_a)
 {
     int i;
 
-  
     i = pos(stac_a,data);
     if(i <= ft_lstsize(*stac_a) / 2)
         ra(stac_a);
@@ -84,7 +82,7 @@ void range(t_list **stac_a, t_data *data)
     size = ft_lstsize(*stac_a);
     if(size < 6)
         data->range = 1;
-    if(size  >= 6 && size  <= 16)
+    else if(size  >= 6 && size  <= 16)
         data->range  =  3;
     else if(size  <= 100)
         data->range  = 13;
@@ -119,7 +117,7 @@ void algo(t_data *data,t_list **stac_a, t_list **stac_b)
             data->start++;
         }
         else
-           ra_or_rra(data,stac_a,stac_b);
+           ra_or_rra(data,stac_a);
     }
     free(data->sort);
 }
@@ -131,10 +129,13 @@ int main(int ac,char **av)
     t_data data;
     stac_b = NULL;
     stac_a = list(av);
-    algo(&data,&stac_a,&stac_b);
-    sort_a(&stac_b,&stac_a,&data);
-    free_stac(&stac_a);
-    free_stac(&stac_b);
+    if(ac > 1)
+    {
+        algo(&data,&stac_a,&stac_b);
+        sort_a(&stac_b,&stac_a,&data);
+        free_stac(&stac_a);
+        free_stac(&stac_b);
+    }
     // printf("------------stac_b----------\n"); 
     // print_stac(stac_b);
     // printf("------------stac_a----------\n");

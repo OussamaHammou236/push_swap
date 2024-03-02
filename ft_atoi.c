@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:36:42 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/02 11:16:40 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:40:41 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	if(str[i] == '-' || str[i] == '+' || str[i] == '\t')
-		ft_error("error");
+		ft_error();
 	return (r * s);
 }

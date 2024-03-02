@@ -6,14 +6,14 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:13:36 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/02 11:19:40 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:40:31 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-void ft_error(char *str)
+void ft_error()
 {
-    printf("%s",str);
+    write(3,"error\n",6);
     exit(1);
 }
 
@@ -49,12 +49,12 @@ t_list *list(char **av)
     {
         sp = ft_split(av[j],' ');
         if(sp[0] == '\0')
-		    ft_error("error");
+		    ft_error();
         i = 0;
         while(sp[i])
         {
             if(check_repeat_nb(node,ft_atoi(sp[i])) == 1)
-                ft_error("double number");
+                ft_error();
             new = ft_lstnew(ft_atoi(sp[i]));
             ft_lstadd_back(&node,new);
             free(sp[i]);
