@@ -61,7 +61,27 @@ int pos_of_nb(t_list **stac_a,int nb)
     *stac_a = tmp;
     return i; 
 }
-
+void lkmala(t_list **stac_b,t_list **stac_a,t_data *data,int c)
+{
+    if(c == 0)
+    {
+        while(data->i > 0)
+        {
+            rrb(stac_b);
+            data->i--;
+        }
+        pa(stac_a,stac_b);
+    }
+    else
+    {
+        while(data->x > 0)
+        {
+            rb(stac_b);
+            data->x--;
+        }
+        pa(stac_a,stac_b);
+    }
+}
 void sort_a(t_list **stac_b,t_list **stac_a,t_data *data)
 {
    t_list *walo;
@@ -75,27 +95,13 @@ void sort_a(t_list **stac_b,t_list **stac_a,t_data *data)
             if(data->x == 0)
                 pa(stac_a,stac_b);
             else if(data->x > ft_lstsize(*stac_b) / 2)
-            {
-                while(data->i > 0)
-                {
-                    rrb(stac_b);
-                    data->i--;
-                }
-                pa(stac_a,stac_b);
-            } 
+                lkmala(stac_b,stac_a,data,0); 
             else
-            {
-                while(data->x > 0)
-                {
-                    rb(stac_b);
-                    data->x--;
-                }
-                pa(stac_a,stac_b);
-            }
+                lkmala(stac_b,stac_a,data,1);
             walo = *stac_b;
         }
         else
-            walo = walo->next;
+             walo = walo->next;
    }
    free_stac(&walo);
 }
