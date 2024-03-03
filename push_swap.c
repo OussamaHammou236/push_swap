@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/02 18:41:42 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/03 20:16:37 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ void range(t_list **stac_a, t_data *data)
     
     size = ft_lstsize(*stac_a);
     if(size < 6)
-        data->range = 1;
+        data->range = 3;
     else if(size  >= 6 && size  <= 16)
-        data->range  =  3;
+        data->range  =  8;
     else if(size  <= 100)
         data->range  = 13;
     else if(size  <= 500)
-        data->range  = 30;
+        data->range  = 29;
     else
-        data->range  = 45;
+        data->range  = 39;
     sort_arr(stac_a,data);
     data->start = 0;
     data->end = data->range;
