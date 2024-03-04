@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/04 15:35:24 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:58:22 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,5 @@ int main(int ac,char **av)
         free_stac(&stac_a);
         free_stac(&stac_b);
     }
-    // printf("------------stac_b----------\n"); 
-    // print_stac(stac_b);
-    // printf("------------stac_a----------\n");
-    // print_stac(stac_a);
     return 0;
 }

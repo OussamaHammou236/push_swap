@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:03:22 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/04 15:39:53 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:57:49 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,26 @@ void sb(t_list **stac_a,int i)
 void pa(t_list **stac_a,t_list **stac_b,int i)
 {
     t_list *new_node;
+    void *tmp;
 
     if(i == 1)
         write(1,"pa\n",3);
     if(!*stac_b)
         return ;
+    tmp = *stac_b;
     new_node = ft_lstnew((*stac_b)->content);
     if(ft_lstsize(*stac_b) == 1)
     {
         
         ft_lstadd_front(stac_a,new_node);
         (*stac_a)->next->prev = new_node;
+        free(tmp);
         *stac_b = NULL;
         return ;
     }
     (*stac_b)->next->prev = NULL;
     (*stac_b) = (*stac_b)->next;
+    free(tmp);
     ft_lstadd_front(stac_a,new_node);
     if((*stac_a)->next)
          (*stac_a)->next->prev = (*stac_a);
@@ -79,27 +83,31 @@ void free_stac(t_list **stac)
         free((*stac)->prev);
     }
     free(*stac);
-    *stac = NULL;
+    *stac = NULL ;
 }
 
 void pb(t_list **stac_a,t_list **stac_b,int i)
 {
     t_list *new_node;
-    
+    void *tmp;
+
     if(i == 1)
         write(1,"pb\n",3);
     if(!*stac_a)
         return ;
+    tmp = *stac_a;
     new_node = ft_lstnew((*stac_a)->content);
     if(ft_lstsize(*stac_a) == 1)
     {
         ft_lstadd_front(stac_b,new_node);
         (*stac_b)->next->prev = new_node;
+        free(tmp);
         *stac_a = NULL;
         return ;
     }
     (*stac_a)->next->prev = NULL;
     (*stac_a) = (*stac_a)->next;
+    free(tmp);
     ft_lstadd_front(stac_b,new_node);
     if((*stac_b)->next)
         (*stac_b)->next->prev = (*stac_b);

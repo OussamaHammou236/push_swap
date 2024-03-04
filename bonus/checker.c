@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:38:29 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/04 16:45:11 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/04 21:05:43 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void read_movse(char *line,t_list **stack_a,t_list **stack_b)
 }
 void is_sorted(t_list **stack_a)
 {
+    void *tmp;
+    tmp = *stack_a;
+
     if(!(*stack_a))
         return ;
     while((*stack_a)->next)
@@ -52,14 +55,12 @@ void is_sorted(t_list **stack_a)
         }
         (*stack_a) = (*stack_a)->next;
     }
-    
-    //printf("\033[0;32m OK\n");
+    *stack_a = tmp;
     write(1,"\033[0;32m OK\n",11);
 }
 int main(int ac,char **av)
 {
     char *line;
-    char *join = "";
     t_list *stack_a;
     t_list *stack_b;
     stack_a = list(av);
@@ -72,7 +73,10 @@ int main(int ac,char **av)
         if(!line)
             break ;
         read_movse(line,&stack_a,&stack_b);
-        join = ft_strjoin(join,line,"");
+        free(line);
     }
+    free(line);
     is_sorted(&stack_a);
+    free_stac(&stack_a);
+    free_stac(&stack_b);
 }
