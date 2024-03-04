@@ -6,15 +6,16 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:03:22 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/02 11:28:55 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:39:53 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sa(t_list **stac_a)
+void sa(t_list **stac_a,int i)
 {
-    write(1,"sa\n",3);
+    if(i == 1)
+        write(1,"sa\n",3);
     if(ft_lstsize(*stac_a) <= 1)  
         return ;
     void *tmp;
@@ -28,9 +29,10 @@ void sa(t_list **stac_a)
         (*stac_a)->next->next->prev = (*stac_a)->next;
 }
 
-void sb(t_list **stac_a)
+void sb(t_list **stac_a,int i)
 {
-    write(1,"sb\n",3);
+    if(i == 1)
+        write(1,"sb\n",3);
     if(ft_lstsize(*stac_a) <= 1)  
         return ;
     void *tmp;
@@ -44,14 +46,15 @@ void sb(t_list **stac_a)
         (*stac_a)->next->next->prev = (*stac_a)->next;
 }
 
-void pa(t_list **stac_a,t_list **stac_b)
+void pa(t_list **stac_a,t_list **stac_b,int i)
 {
     t_list *new_node;
 
-    new_node = ft_lstnew((*stac_b)->content);
-    write(1,"pa\n",3);
+    if(i == 1)
+        write(1,"pa\n",3);
     if(!*stac_b)
         return ;
+    new_node = ft_lstnew((*stac_b)->content);
     if(ft_lstsize(*stac_b) == 1)
     {
         
@@ -79,14 +82,15 @@ void free_stac(t_list **stac)
     *stac = NULL;
 }
 
-void pb(t_list **stac_a,t_list **stac_b)
+void pb(t_list **stac_a,t_list **stac_b,int i)
 {
     t_list *new_node;
     
-    new_node = ft_lstnew((*stac_a)->content);
-    write(1,"pb\n",3);
+    if(i == 1)
+        write(1,"pb\n",3);
     if(!*stac_a)
         return ;
+    new_node = ft_lstnew((*stac_a)->content);
     if(ft_lstsize(*stac_a) == 1)
     {
         ft_lstadd_front(stac_b,new_node);
@@ -101,10 +105,12 @@ void pb(t_list **stac_a,t_list **stac_b)
         (*stac_b)->next->prev = (*stac_b);
 }
 
-void ra(t_list **stac_a)
+void ra(t_list **stac_a,int i)
 {
     t_list *new_node;
-    write(1,"ra\n",3);
+    
+    if(i == 1)
+        write(1,"ra\n",3);
     if(ft_lstsize(*stac_a) <= 1)
         return ;
     new_node = ft_lstnew((*stac_a)->content);
@@ -113,25 +119,26 @@ void ra(t_list **stac_a)
     free((*stac_a)->prev);
     (*stac_a)->prev = NULL;
 }
-void rb(t_list **stac_b)
+void rb(t_list **stac_b,int i)
 {
     t_list *new_node;
     
-    write(1,"rb\n",3);
-    new_node = ft_lstnew((*stac_b)->content);
+    if(i == 1)
+        write(1,"rb\n",3);
     if(ft_lstsize(*stac_b) <= 1) 
         return ;
+    new_node = ft_lstnew((*stac_b)->content);
     ft_lstadd_back(stac_b,new_node);
     (*stac_b) = (*stac_b)->next;
     free((*stac_b)->prev);
     (*stac_b)->prev = NULL;
 }
-void rra(t_list **stac_a)
+void rra(t_list **stac_a,int i)
 {
     t_list *new_node;
     void *tmp;
-
-    write(1,"rra\n",4);
+    if(i == 1)
+        write(1,"rra\n",4);
     if(ft_lstsize(*stac_a) <= 1) 
         return ;
     new_node = ft_lstnew(ft_lstlast(*stac_a)->content);
@@ -142,12 +149,13 @@ void rra(t_list **stac_a)
     free(tmp);
 }
 
-void rrb(t_list **stac_b)
+void rrb(t_list **stac_b,int i)
 {
     t_list *new_node;
     void *tmp;
 
-    write(1,"rrb\n",4);
+    if(i == 1)
+        write(1,"rrb\n",4);
     if(ft_lstsize(*stac_b) <= 1) 
         return ;
     new_node = ft_lstnew(ft_lstlast(*stac_b)->content);
@@ -157,21 +165,24 @@ void rrb(t_list **stac_b)
     ft_lstlast(*stac_b)->prev->next = NULL;
     free(tmp);
 }
-void rrr(t_list **stac_a,t_list **stac_b)
+void rrr(t_list **stac_a,t_list **stac_b,int i)
 {
-    write(1,"rrr\n",4);
-    rra(stac_a);
-    rrb(stac_b);
+    if(i == 1)
+        write(1,"rrr\n",4);
+    rra(stac_a,0);
+    rrb(stac_b,0);
 }
-void rr(t_list **stac_a,t_list **stac_b)
+void rr(t_list **stac_a,t_list **stac_b,int i)
 {
-    write(1,"rr\n",3);
-    ra(stac_a);
-    rb(stac_b);
+    if(i == 1)
+        write(1,"rr\n",3);
+    ra(stac_a,0);
+    rb(stac_b,0);
 }
-void ss(t_list **stac_a,t_list **stac_b)
+void ss(t_list **stac_a,t_list **stac_b,int i)
 {
-    write(1,"ss\n",3);
-    sa(stac_a);
-    sb(stac_b);
+    if(i == 1)
+        write(1,"ss\n",3);
+    sa(stac_a,0);
+    sb(stac_b,0);
 }

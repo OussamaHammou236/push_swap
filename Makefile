@@ -2,10 +2,11 @@ CC= cc
 CFLAGS= -Wall -Wextra -Werror
 NAME= push_swap
 BNAME= checker
-OBJ= push_swap.c check.c ft_atoi.c ft_lstnew_bonus.c ft_lstadd_back_bonus.c ft_lstlast_bonus.c ft_split.c ft_substr.c ft_strlen.c rules.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c sort_a.c
+OBJ= push_swap.c check.c ft_atoi.c ft_lstnew_bonus.c ft_lstadd_back_bonus.c ft_lstlast_bonus.c ft_split.c ft_substr.c ft_strlen.c rules.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c sort_a.c push_swap_utilis.c
 OBJ_O= $(OBJ:.c=.o)
-BOBJ= checker.c ft_strncmp.c get_next_line_utils.c get_next_line.c
+BOBJ= bonus/checker.c  bonus/ft_strncmp.c  bonus/get_next_line_utils.c  bonus/get_next_line.c check.c ft_atoi.c ft_lstnew_bonus.c ft_lstadd_back_bonus.c ft_lstlast_bonus.c ft_split.c ft_substr.c ft_strlen.c rules.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c sort_a.c push_swap_utilis.c
 BOBJ_O= $(BOBJ:.c=.o)
+
 all: $(NAME)
 
 $(NAME): $(OBJ_O)
@@ -25,4 +26,3 @@ fclean: clean
 re: fclean all
 
 .SECONDARY: $(OBJ_O) $(BOBJ_O)
-

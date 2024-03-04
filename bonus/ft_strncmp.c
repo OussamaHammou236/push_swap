@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 18:36:42 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/04 16:52:21 by ohammou-         ###   ########.fr       */
+/*   Created: 2023/10/31 17:51:57 by ohammou-          #+#    #+#             */
+/*   Updated: 2024/03/04 11:35:56 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "get_next_line.h"
 
-int	ft_atoi(const char *str)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
-	int	s;
-	int	r;
+	size_t	i;
 
 	i = 0;
-	r = 0;
-	s = 1;
-	if (str[i] == '-' || str[i] == '+')
+	while ((s1[i] || s2[i]) & (i < n))
 	{
-		if (str[i] == '-')
-			s = -1;
+		if (s1[i] != s2[i])
+			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= '9' && str[i])
-	{
-		r = r * 10 + (str[i] - 48);
-		i++;
-	}
-	if(str[i] < 0 || str[i] > 9)
-		ft_error();
-	if(str[i] == '-' || str[i] == '+' || str[i] == '\t')
-		ft_error();
-	return (r * s);
+	return (0);
 }

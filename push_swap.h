@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:51:15 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/02 17:40:49 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:36:17 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,18 @@ typedef struct s_data
 	int nb;
 }	t_data;
 
+void 				ra(t_list **stac_a,int i);
+void 				rb(t_list **stac_b,int i);
+void				rra(t_list **stac_a,int i);
+void 				rrb(t_list **stac_b,int i);
+void 				sa(t_list **stac_a,int i);
+void 				sb(t_list **stac_b,int i);
+void 				ss(t_list **stac_a,t_list **stac_b,int i);
+void 				rr(t_list **stac_a,t_list **stac_b,int i);
+void 				rrr(t_list **stac_a,t_list **stac_b,int i);
+void 				pb(t_list **stac_a,t_list **stac_b,int i);
+void 				pa(t_list **stac_a,t_list **stac_b,int i);
+
 t_list				*ft_lstnew(int content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 t_list				*ft_lstlast(t_list *lst);
@@ -55,14 +67,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				**ft_split(char const *s, char c);
 size_t				ft_strlen(const char *str);
 void 				print_stac(t_list *node);
-void 				pb(t_list **stac_a,t_list **stac_b);
-void 				pa(t_list **stac_a,t_list **stac_b);
 void 				free_stac(t_list **stac);
-void 				ra(t_list **stac_a);
-void				rra(t_list **stac_a);
-void 				sb(t_list **stac_b);
-void 				sa(t_list **stac_a);
-void 				rrb(t_list **stac_b);
 int 				check_repeat_nb(t_list *node,int nb);
 void 				sort_a(t_list **stac_b,t_list **stac_a,t_data *data);
 int 				pos_of_nb(t_list **stac_a,int nb);
@@ -71,6 +76,9 @@ void 				sort_a(t_list **stac_b,t_list **stac_a,t_data *data);
 void 				sort_arr(t_list **stac_a,t_data *data);
 void 				copy_stac_to_arry(t_list **copy,t_data *data);
 int 				chehal(t_list **stac_a,int nb);
-void 				rb(t_list **stac_b);
+int 				pos(t_list **stac_a,t_data *data);
+int 				wach_kbir(t_list **stac_a,int nb);
+void 				ra_or_rra(t_data *data,t_list **stac_a);
+void 				algo(t_data *data,t_list **stac_a, t_list **stac_b);
 
 #endif

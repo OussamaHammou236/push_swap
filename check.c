@@ -6,14 +6,14 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:13:36 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/02 17:40:31 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:48:31 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 void ft_error()
 {
-    write(3,"error\n",6);
+    write(2,"\033[0;31merror\n",13);
     exit(1);
 }
 
@@ -45,6 +45,7 @@ t_list *list(char **av)
     t_list *node = NULL;
     t_list *new;
     char **sp;
+    
     while (av[j])
     {
         sp = ft_split(av[j],' ');

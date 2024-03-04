@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 21:15:33 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/03 21:15:47 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:37:35 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,19 @@ void lkmala(t_list **stac_b,t_list **stac_a,t_data *data,int c)
     {
         while(data->i > 0)
         {
-            rrb(stac_b);
+            rrb(stac_b,1);
             data->i--;
         }
-        pa(stac_a,stac_b);
+        pa(stac_a,stac_b,1);
     }
     else
     {
         while(data->x > 0)
         {
-            rb(stac_b);
+            rb(stac_b,1);
             data->x--;
         }
-        pa(stac_a,stac_b);
+        pa(stac_a,stac_b,1);
     }
 }
 void sort_a(t_list **stac_b,t_list **stac_a,t_data *data)
@@ -105,7 +105,7 @@ void sort_a(t_list **stac_b,t_list **stac_a,t_data *data)
             data->i = chehal(stac_b,walo->content);
             data->x =  pos_of_nb(stac_b,walo->content);
             if(data->x == 0)
-                pa(stac_a,stac_b);
+                pa(stac_a,stac_b,1);
             else if(data->x > ft_lstsize(*stac_b) / 2)
                 lkmala(stac_b,stac_a,data,0); 
             else
