@@ -27,16 +27,16 @@ int	ft_atoi(const char *str)
 			s = -1;
 		i++;
 	}
-	if(str[i] == '\0')
+	if (str[i] == '\0')
 		ft_error();
 	while (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
 		r = r * 10 + (str[i] - 48);
 		i++;
 		if ((r * s) > 2147483647 || (r * s) < -2147483648)
-			ft_error();	
+			ft_error();
 	}
-	if(str[i] != '\0')
+	if (str[i] != '\0')
 		ft_error();
 	return ((int)r * s);
 }

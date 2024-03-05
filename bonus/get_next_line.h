@@ -19,9 +19,9 @@
 
 //# include <fcntl.h>
 //# include <stdio.h>
+# include "../push_swap.h"
 # include <stdlib.h>
 # include <unistd.h>
-# include "../push_swap.h"
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2, char *s3);

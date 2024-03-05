@@ -6,23 +6,11 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:05:14 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/04 12:01:25 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:11:59 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-// size_t	ft_strlen(const char *str)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	if (!str)
-// 		return (0);
-// 	while (((char *)str)[i])
-// 		i++;
-// 	return (i);
-// }
 
 size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
