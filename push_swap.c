@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/05 18:28:37 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/05 21:23:52 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	random_numbers_3(t_list **stac_a)
 		rra(stac_a, 1);
 }
 
-void	push_min(t_list **stack_a, t_list **stack_b)
+int	min(t_list **stack_a)
 {
 	void	*tmp;
 	int		nb;
 
-	tmp = *stack_a;
 	nb = (*stack_a)->content;
+	tmp = *stack_a;
 	while (*stack_a)
 	{
 		if (nb > (*stack_a)->content)
@@ -52,11 +52,32 @@ void	push_min(t_list **stack_a, t_list **stack_b)
 		(*stack_a) = (*stack_a)->next;
 	}
 	*stack_a = tmp;
-	while (*stack_a)
+	return (nb);
+}
+
+void	push_min(t_list **stack_a, t_list **stack_b)
+{
+	int	i;
+	int	nb;
+
+	nb = min(stack_a);
+	i = pos_of_nb(stack_a, nb);
+	if (i >= ft_lstsize(*stack_a) / 2)
 	{
-		if (nb == (*stack_a)->content)
-			break ;
-		ra(stack_a, 1);
+		i = ft_lstsize(*stack_a) - i;
+		while (i > 0)
+		{
+			rra(stack_a, 1);
+			i--;
+		}
+	}
+	else
+	{
+		while (i > 0)
+		{
+			ra(stack_a, 1);
+			i--;
+		}
 	}
 	pb(stack_a, stack_b, 1);
 }
