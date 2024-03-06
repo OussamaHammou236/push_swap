@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:03:22 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/05 20:32:35 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/06 23:11:33 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	pa(t_list **stac_a, t_list **stac_b, int i)
 	if (ft_lstsize(*stac_b) == 1)
 	{
 		ft_lstadd_front(stac_a, new_node);
-		(*stac_a)->next->prev = new_node;
+		if ((*stac_a)->next)
+			(*stac_a)->next->prev = new_node;
 		free(tmp);
 		*stac_b = NULL;
 		return ;

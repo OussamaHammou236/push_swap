@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/06 14:31:38 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:25:36 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	push_min(t_list **stack_a, t_list **stack_b)
 
 void	random_numbers_5(t_list **stack_a, t_list **stack_b)
 {
-	push_min(stack_a, stack_b);
+	if (ft_lstsize(*stack_a) == 5)
+		push_min(stack_a, stack_b);
 	push_min(stack_a, stack_b);
 	random_numbers_3(stack_a);
 	pa(stack_a, stack_b, 1);
