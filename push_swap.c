@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/05 21:23:52 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:31:38 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	main(int ac, char **av)
 			sa(&stac_a, 1);
 		else if (ft_lstsize(stac_a) == 3)
 			random_numbers_3(&stac_a);
-		else if (ft_lstsize(stac_a) <= 5)
+		else if (ft_lstsize(stac_a) > 3 && ft_lstsize(stac_a) <= 5)
 			random_numbers_5(&stac_a, &stac_b);
 		else if (ft_lstsize(stac_a) > 5)
 		{
