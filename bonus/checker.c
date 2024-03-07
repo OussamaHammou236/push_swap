@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:38:29 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/06 23:12:16 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/07 09:44:55 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	read_movse(char *line, t_list **stack_a, t_list **stack_b)
 		ft_error();
 }
 
-void	is_sorted(t_list **stack_a)
+void	is_sorted(t_list **stack_a, t_list **stack_b)
 {
 	void	*tmp;
 
@@ -60,6 +60,11 @@ void	is_sorted(t_list **stack_a)
 		(*stack_a) = (*stack_a)->next;
 	}
 	*stack_a = tmp;
+	if(!(*stack_b))
+	{
+		write(1, "\033[0;31m KO\n", 11);
+		return ;
+	}
 	write(1, "\033[0;32m OK\n", 11);
 }
 
@@ -82,7 +87,7 @@ int	main(int ac, char **av)
 		free(line);
 	}
 	free(line);
-	is_sorted(&stack_a);
+	is_sorted(&stack_a, &stack_b);
 	free_stac(&stack_a);
 	free_stac(&stack_b);
 }
