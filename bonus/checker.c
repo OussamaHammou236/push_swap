@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:38:29 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/09 17:25:55 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:36:28 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,12 @@ void	read_movse(char *line, t_list **stack_a, t_list **stack_b)
 
 void	is_sorted(t_list **stack_a, t_list **stack_b)
 {
-	void	*tmp;
-
-	tmp = *stack_a;
-	while ((*stack_a)->next)
-	{
-		if ((*stack_a)->content > (*stack_a)->next->content)
-		{
-			write(1, "\033[0;31m KO\n", 11);
-			return ;
-		}
-		(*stack_a) = (*stack_a)->next;
-	}
-	*stack_a = tmp;
 	if (*stack_b)
-	{
 		write(1, "\033[0;31m KO\n", 11);
-		return ;
-	}
-	write(1, "\033[0;32m OK\n", 11);
+	else if (check_1(*stack_a) == 0)
+		write(1, "\033[0;31m KO\n", 11);
+	else
+		write(1, "\033[0;32m OK\n", 11);
 }
 
 int	main(int ac, char **av)
