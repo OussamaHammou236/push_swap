@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:51:15 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/05 18:25:54 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:30:49 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ int					pos(t_list **stac_a, t_data *data);
 int					wach_kbir(t_list **stac_a, int nb);
 void				ra_or_rra(t_data *data, t_list **stac_a);
 void				algo(t_data *data, t_list **stac_a, t_list **stac_b);
+int					check_1(t_list *stack_a);
 
 #endif

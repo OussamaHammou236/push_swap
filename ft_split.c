@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:17:09 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/02/09 22:28:38 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:46:42 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (malloc(0));
 	y = ft_hsb(s, c);
-	b = (char **)malloc((y + 1) * sizeof(char *));
+	b = malloc((y + 1) * sizeof(char *));
 	if (!b)
 		return (NULL);
 	b[y] = NULL;

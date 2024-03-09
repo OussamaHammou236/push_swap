@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/06 16:25:36 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:31:35 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	main(int ac, char **av)
 
 	stac_b = NULL;
 	stac_a = list(av);
-	if (ac >= 3)
+	if (ac >= 3 && check_1(stac_a) == 0)
 	{
 		if (ft_lstsize(stac_a) == 2 && stac_a->content > stac_a->next->content)
 			sa(&stac_a, 1);
