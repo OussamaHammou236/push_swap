@@ -6,21 +6,21 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:31:51 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/08 17:29:56 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:18:17 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_1(t_list *stack_a)
+int	check_1(t_list *stack_a)
 {
 	while (stack_a->next)
 	{
-		if (stack_a->content > stack_a->next->content)	
-			return 0;
+		if (stack_a->content > stack_a->next->content)
+			return (0);
 		stack_a = stack_a->next;
 	}
-	return 1;
+	return (1);
 }
 
 void	rrr(t_list **stac_a, t_list **stac_b, int i)

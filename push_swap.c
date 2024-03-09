@@ -6,10 +6,11 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/08 17:31:35 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:32:53 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include "push_swap.h"
 
 void	random_numbers_3(t_list **stac_a)
