@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:38:29 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/09 17:18:43 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:25:55 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,6 @@ void	is_sorted(t_list **stack_a, t_list **stack_b)
 	void	*tmp;
 
 	tmp = *stack_a;
-	if (!(*stack_a))
-	{
-		write(1, "\033[0;31m KO\n\033[0m", 11);
-		return ;
-	}
 	while ((*stack_a)->next)
 	{
 		if ((*stack_a)->content > (*stack_a)->next->content)
@@ -60,7 +55,7 @@ void	is_sorted(t_list **stack_a, t_list **stack_b)
 		(*stack_a) = (*stack_a)->next;
 	}
 	*stack_a = tmp;
-	if (!(*stack_b))
+	if (*stack_b)
 	{
 		write(1, "\033[0;31m KO\n", 11);
 		return ;
