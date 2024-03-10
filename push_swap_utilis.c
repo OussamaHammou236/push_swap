@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:54:38 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/05 18:28:04 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:57:54 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	range(t_list **stac_a, t_data *data)
 	else if (size <= 500)
 		data->range = 29;
 	else
-		data->range = 39;
+		data->range = 45;
 	sort_arr(stac_a, data);
 	data->start = 0;
 	data->end = data->range;
