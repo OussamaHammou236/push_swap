@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:38:29 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/09 17:52:49 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:17:07 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	read_movse(char *line, t_list **stack_a, t_list **stack_b)
 void	is_sorted(t_list **stack_a, t_list **stack_b)
 {
 	if (*stack_b)
-		write(1, "\033[0;31m KO\n", 11);
+		write(1, "KO\n", 3);
 	else if (check_1(*stack_a) == 0)
-		write(1, "\033[0;31m KO\n", 11);
+		write(1, "KO\n", 3);
 	else
-		write(1, "\033[0;32m OK\n", 11);
+		write(1, "OK\n", 3);
 }
 
 int	main(int ac, char **av)

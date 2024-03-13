@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/10 18:30:41 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:52:29 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,14 @@ void	push_min(t_list **stack_a, t_list **stack_b)
 
 void	random_numbers_5(t_list **stack_a, t_list **stack_b)
 {
-	if (ft_lstsize(*stack_a) == 5)
+	int	i;
+
+	i = ft_lstsize(*stack_a);
+	if (i == 5)
 		push_min(stack_a, stack_b);
 	push_min(stack_a, stack_b);
 	random_numbers_3(stack_a);
-	if (ft_lstsize(*stack_a) == 5)
+	if (i == 5)
 		pa(stack_a, stack_b, 1);
 	pa(stack_a, stack_b, 1);
 }
@@ -117,8 +120,8 @@ int	main(int ac, char **av)
 			free(data.sort);
 			sort_a(&stac_b, &stac_a, &data);
 		}
-		free_stac(&stac_a);
-		free_stac(&stac_b);
 	}
+	free_stac(&stac_a);
+	free_stac(&stac_b);
 	return (0);
 }

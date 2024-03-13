@@ -15,26 +15,19 @@ all: $(NAME)
 
 $(NAME): $(OBJ_O)
 	$(CC) $(CFLAGS) $(OBJ_O) -o $(NAME)
-	clear
-	@echo "\033[1;32m push_swap created\033[0m ✅"
 
 bonus: $(BNAME)
 
 $(BNAME): $(BOBJ_O)
-	@$(CC) $(CFLAGS) $(BOBJ_O) -o $(BNAME)
-	clear
-	@echo "\033[1;32m checker created\033[0m ✅"
+	$(CC) $(CFLAGS) $(BOBJ_O) -o $(BNAME)
 
 clean:
-	@rm -rf $(OBJ_O) $(BOBJ_O) 
-	@echo "\033[1;32mremove OBJ_O is successful\033[0m 🚮"
+	rm -rf $(OBJ_O) $(BOBJ_O) 
 
 fclean: clean
-	@rm -rf $(NAME) $(BNAME)
-	@echo "\033[1;32mremove programe is successful\033[0m 🚮"
+	rm -rf $(NAME) $(BNAME)
 
 re: fclean all
-	@echo "\033[1;32m make re is successful\033[0m ♻️"
 
 .PHONY: clean
 
