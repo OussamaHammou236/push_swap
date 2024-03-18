@@ -6,11 +6,10 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 19:02:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/13 15:52:29 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:09:19 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "push_swap.h"
 
 void	random_numbers_3(t_list **stac_a)
@@ -122,6 +121,5 @@ int	main(int ac, char **av)
 		}
 	}
 	free_stac(&stac_a);
-	free_stac(&stac_b);
 	return (0);
 }

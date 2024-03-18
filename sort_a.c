@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 21:15:33 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/03/05 20:33:42 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:10:02 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,4 @@ void	sort_a(t_list **stac_b, t_list **stac_a, t_data *data)
 		else
 			walo = walo->next;
 	}
-	free_stac(&walo);
 }
